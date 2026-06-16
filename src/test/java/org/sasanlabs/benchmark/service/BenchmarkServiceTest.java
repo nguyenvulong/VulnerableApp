@@ -20,12 +20,13 @@ class BenchmarkServiceTest {
 
     @Mock private DastBenchmarkStrategy dastStrategy;
     @Mock private SastBenchmarkStrategy sastStrategy;
+    @Mock private AgentBenchmarkStrategy agentStrategy;
 
     private BenchmarkService service;
 
     @BeforeEach
     void setUp() {
-        service = new BenchmarkService(dastStrategy, sastStrategy);
+        service = new BenchmarkService(dastStrategy, sastStrategy, agentStrategy);
     }
 
     @Test
@@ -51,6 +52,21 @@ class BenchmarkServiceTest {
 
         assertThat(out).isSameAs(sastResult);
         verify(dastStrategy, never()).compare(input);
+        verify(agentStrategy, never()).compare(input);
+    }
+
+    @Test
+    void agentScanType_routesToAgentStrategy() throws Exception {
+        BenchmarkResult agentResult = result("Agent");
+        ScannerFindings input =
+                new ScannerFindings("Agent", ScanType.AGENT, Collections.emptyList());
+        when(agentStrategy.compare(input)).thenReturn(agentResult);
+
+        BenchmarkResult out = service.compare(input);
+
+        assertThat(out).isSameAs(agentResult);
+        verify(dastStrategy, never()).compare(input);
+        verify(sastStrategy, never()).compare(input);
     }
 
     @Test
@@ -64,6 +80,7 @@ class BenchmarkServiceTest {
         assertThat(out).isSameAs(dastResult);
         verify(dastStrategy).compare(input);
         verify(sastStrategy, never()).compare(input);
+        verify(agentStrategy, never()).compare(input);
     }
 
     private static BenchmarkResult result(String tool) {

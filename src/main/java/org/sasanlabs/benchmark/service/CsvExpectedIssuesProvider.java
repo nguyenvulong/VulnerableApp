@@ -19,9 +19,10 @@ import org.springframework.stereotype.Component;
 
 /**
  * Loads SAST ground truth from a CSV file with header columns {@code CWE}, {@code Vulnerability
- * Type}, {@code File}, {@code Line}, {@code Number of Sources}. The default path points at {@code
- * scanner/sast/expectedIssues.csv} in the project root; override via the {@code
- * benchmark.sast.ground-truth.path} property.
+ * Type}, {@code File}, {@code Line}, {@code Number of Sources}. Expanded benchmark CSVs may also
+ * include {@code Issue Id}, {@code Vulnerability Key}, {@code Endpoint}, {@code Method}, {@code
+ * Variant}, and {@code Mode}. The default path points at {@code scanner/sast/expectedIssues.csv} in
+ * the project root; override via the {@code benchmark.sast.ground-truth.path} property.
  *
  * <p>Rows that fail to parse (missing columns, non-integer line / sources) are logged and skipped —
  * one bad row should not abort an entire benchmark run.
@@ -36,6 +37,14 @@ public class CsvExpectedIssuesProvider implements IExpectedIssuesProvider {
     private static final String COL_FILE = "File";
     private static final String COL_LINE = "Line";
     private static final String COL_SOURCES = "Number of Sources";
+    private static final String COL_ISSUE_ID = "Issue Id";
+    private static final String COL_VULNERABILITY_KEY = "Vulnerability Key";
+    private static final String COL_ENDPOINT = "Endpoint";
+    private static final String COL_METHOD = "Method";
+    private static final String COL_VARIANT = "Variant";
+    private static final String COL_MODE = "Mode";
+    private static final String MODE_SAST = "SAST";
+    private static final String MODE_AGENT = "AGENT";
 
     private static final CSVFormat FORMAT =
             CSVFormat.DEFAULT
@@ -72,11 +81,22 @@ public class CsvExpectedIssuesProvider implements IExpectedIssuesProvider {
     }
 
     private ExpectedIssue parseRow(CSVRecord row) {
-        if (!row.isSet(COL_CWE)
-                || !row.isSet(COL_TYPE)
-                || !row.isSet(COL_FILE)
-                || !row.isSet(COL_LINE)
-                || !row.isSet(COL_SOURCES)) {
+        if (!isSet(row, COL_CWE) || !isSet(row, COL_TYPE)) {
+            LOGGER.warn(
+                    "Skipping malformed SAST CSV row at line {} of {}: missing required columns",
+                    row.getRecordNumber(),
+                    csvPath);
+            return null;
+        }
+        String mode = defaultIfBlank(getOptional(row, COL_MODE), MODE_SAST);
+        if (MODE_AGENT.equalsIgnoreCase(mode)) {
+            return parseAgentRow(row, mode);
+        }
+        return parseSastRow(row, mode);
+    }
+
+    private ExpectedIssue parseSastRow(CSVRecord row, String mode) {
+        if (!isSet(row, COL_FILE) || !isSet(row, COL_LINE) || !isSet(row, COL_SOURCES)) {
             LOGGER.warn(
                     "Skipping malformed SAST CSV row at line {} of {}: missing required columns",
                     row.getRecordNumber(),
@@ -85,11 +105,17 @@ public class CsvExpectedIssuesProvider implements IExpectedIssuesProvider {
         }
         try {
             return new ExpectedIssue(
-                    row.get(COL_CWE),
-                    row.get(COL_TYPE),
-                    row.get(COL_FILE),
-                    Integer.parseInt(row.get(COL_LINE)),
-                    Integer.parseInt(row.get(COL_SOURCES)));
+                    getOptional(row, COL_CWE),
+                    getOptional(row, COL_TYPE),
+                    getOptional(row, COL_FILE),
+                    parseInteger(getOptional(row, COL_LINE)),
+                    parseInteger(getOptional(row, COL_SOURCES)),
+                    getOptional(row, COL_ISSUE_ID),
+                    getOptional(row, COL_VULNERABILITY_KEY),
+                    getOptional(row, COL_ENDPOINT),
+                    getOptional(row, COL_METHOD),
+                    getOptional(row, COL_VARIANT),
+                    mode);
         } catch (NumberFormatException nfe) {
             LOGGER.warn(
                     "Skipping SAST CSV row at line {} of {}: non-integer line or sources column"
@@ -99,5 +125,62 @@ public class CsvExpectedIssuesProvider implements IExpectedIssuesProvider {
                     nfe.getMessage());
             return null;
         }
+    }
+
+    private ExpectedIssue parseAgentRow(CSVRecord row, String mode) {
+        if (!isSet(row, COL_ENDPOINT) || !isSet(row, COL_METHOD) || !isSet(row, COL_VARIANT)) {
+            LOGGER.warn(
+                    "Skipping malformed AGENT CSV row at line {} of {}: missing required columns",
+                    row.getRecordNumber(),
+                    csvPath);
+            return null;
+        }
+        try {
+            return new ExpectedIssue(
+                    getOptional(row, COL_CWE),
+                    getOptional(row, COL_TYPE),
+                    getOptional(row, COL_FILE),
+                    parseOptionalInteger(row, COL_LINE),
+                    parseOptionalInteger(row, COL_SOURCES),
+                    getOptional(row, COL_ISSUE_ID),
+                    getOptional(row, COL_VULNERABILITY_KEY),
+                    getOptional(row, COL_ENDPOINT),
+                    getOptional(row, COL_METHOD),
+                    getOptional(row, COL_VARIANT),
+                    mode);
+        } catch (NumberFormatException nfe) {
+            LOGGER.warn(
+                    "Skipping AGENT CSV row at line {} of {}: non-integer line or sources column"
+                            + " ({})",
+                    row.getRecordNumber(),
+                    csvPath,
+                    nfe.getMessage());
+            return null;
+        }
+    }
+
+    private static boolean isSet(CSVRecord row, String column) {
+        return row.isMapped(column) && row.isSet(column) && !row.get(column).trim().isEmpty();
+    }
+
+    private static String getOptional(CSVRecord row, String column) {
+        if (!row.isMapped(column) || !row.isSet(column)) {
+            return null;
+        }
+        String value = row.get(column);
+        return value == null || value.trim().isEmpty() ? null : value.trim();
+    }
+
+    private static String defaultIfBlank(String value, String defaultValue) {
+        return value == null || value.trim().isEmpty() ? defaultValue : value.trim();
+    }
+
+    private static Integer parseOptionalInteger(CSVRecord row, String column) {
+        String value = getOptional(row, column);
+        return value == null ? null : parseInteger(value);
+    }
+
+    private static Integer parseInteger(String value) {
+        return Integer.valueOf(value);
     }
 }

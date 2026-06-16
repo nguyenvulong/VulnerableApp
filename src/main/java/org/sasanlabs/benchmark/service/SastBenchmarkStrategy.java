@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.sasanlabs.benchmark.model.BenchmarkResult;
@@ -44,7 +45,10 @@ public class SastBenchmarkStrategy implements BenchmarkStrategy {
 
     @Override
     public BenchmarkResult compare(ScannerFindings input) throws IOException {
-        List<ExpectedIssue> expected = expectedIssuesProvider.getExpectedIssues();
+        List<ExpectedIssue> expected =
+                expectedIssuesProvider.getExpectedIssues().stream()
+                        .filter(ExpectedIssue::isSastMode)
+                        .collect(Collectors.toList());
 
         Map<String, ExpectedIssue> expectedByKey = new LinkedHashMap<>();
         for (ExpectedIssue ei : expected) {

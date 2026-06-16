@@ -7,8 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * A single scanner finding. DAST findings populate {@code url} + {@code type} (and optionally
  * {@code method} / {@code cwe} / {@code wascId} for taxonomy-tolerant matching); SAST findings
- * populate {@code filePath} + {@code line} + {@code type} (and optionally {@code cwe}). Unused
- * fields are omitted from the serialised output.
+ * populate {@code filePath} + {@code line} + {@code type} (and optionally {@code cwe}); AGENT
+ * findings populate {@code url} + {@code method} + evidence and one taxonomy axis. Unused fields
+ * are omitted from the serialised output.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Finding {
@@ -34,6 +35,18 @@ public class Finding {
     @JsonProperty("method")
     private String method;
 
+    @JsonProperty("vulnerabilityKey")
+    private String vulnerabilityKey;
+
+    @JsonProperty("evidence")
+    private String evidence;
+
+    @JsonProperty("request")
+    private String request;
+
+    @JsonProperty("responseSnippet")
+    private String responseSnippet;
+
     @JsonCreator
     public Finding(
             @JsonProperty("url") String url,
@@ -42,7 +55,11 @@ public class Finding {
             @JsonProperty("line") Integer line,
             @JsonProperty("cwe") String cwe,
             @JsonProperty("wascId") String wascId,
-            @JsonProperty("method") String method) {
+            @JsonProperty("method") String method,
+            @JsonProperty("vulnerabilityKey") String vulnerabilityKey,
+            @JsonProperty("evidence") String evidence,
+            @JsonProperty("request") String request,
+            @JsonProperty("responseSnippet") String responseSnippet) {
         this.url = url;
         this.type = type;
         this.filePath = filePath;
@@ -50,6 +67,21 @@ public class Finding {
         this.cwe = cwe;
         this.wascId = wascId;
         this.method = method;
+        this.vulnerabilityKey = vulnerabilityKey;
+        this.evidence = evidence;
+        this.request = request;
+        this.responseSnippet = responseSnippet;
+    }
+
+    public Finding(
+            String url,
+            String type,
+            String filePath,
+            Integer line,
+            String cwe,
+            String wascId,
+            String method) {
+        this(url, type, filePath, line, cwe, wascId, method, null, null, null, null);
     }
 
     public Finding(
@@ -91,5 +123,21 @@ public class Finding {
 
     public String getMethod() {
         return method;
+    }
+
+    public String getVulnerabilityKey() {
+        return vulnerabilityKey;
+    }
+
+    public String getEvidence() {
+        return evidence;
+    }
+
+    public String getRequest() {
+        return request;
+    }
+
+    public String getResponseSnippet() {
+        return responseSnippet;
     }
 }

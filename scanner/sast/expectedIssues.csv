@@ -1,36 +1,193 @@
-CWE,Vulnerability Type,File,Line,Number of Sources
-CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java,56,1
-CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java,82,1
-CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java,68,1
-CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java,115,1
-CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java,165,1
-CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java,218,1
-CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java,50,1
-CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java,77,1
-CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java,102,1
-CWE-79,Reflected XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java,45,1
-CWE-79,Reflected XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java,72,1
-CWE-79,Reflected XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java,101,1
-CWE-79,Reflected XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/UrlParamBasedImgTagAttrInjection.java,60,1
-CWE-79,Reflected XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/UrlParamBasedImgTagAttrInjection.java,82,1
-CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,101,1
-CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,119,1
-CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,141,1
-CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,165,1
-CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,196,1
-CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,226,1
-CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,257,1
-CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,276,1
-CWE-22,Path Traversal,src/main/java/org/sasanlabs/service/vulnerability/pathTraversal/PathTraversalVulnerability.java,65,12 
-CWE-601,Open Redirect,src/main/java/org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java,66,6
-CWE-601,Open Redirect,src/main/java/org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java,214,1
-CWE-601,Open Redirect,src/main/java/org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java,244,1
-CWE-77,Command Injection,src/main/java/org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java,46,5
-CWE-77,Command Injection,src/main/java/org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java,51,5
-CWE-434,Unrestricted File Upload,src/main/java/org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java,117,9
-CWE-79,Reflected XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java,88,1
-CWE-79,Reflected XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java,108,1
-CWE-327,Cryptographic Failures,src/main/java/org/sasanlabs/service/vulnerability/cryptographicFailures/CryptographicFailuresVulnerability.java,60,1
-CWE-327,Cryptographic Failures,src/main/java/org/sasanlabs/service/vulnerability/cryptographicFailures/CryptographicFailuresVulnerability.java,85,1
-CWE-330,Cryptographic Failures,src/main/java/org/sasanlabs/service/vulnerability/cryptographicFailures/CryptographicFailuresVulnerability.java,110,1
-CWE-326,Cryptographic Failures,src/main/java/org/sasanlabs/service/vulnerability/cryptographicFailures/CryptographicFailuresVulnerability.java,145,1
+CWE,Vulnerability Type,File,Line,Number of Sources,Issue Id,Vulnerability Key,Endpoint,Method,Variant,Mode
+CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java,56,1,SAST-001,,,,UNSECURE,SAST
+CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java,82,1,SAST-002,,,,UNSECURE,SAST
+CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java,68,1,SAST-003,,,,UNSECURE,SAST
+CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java,115,1,SAST-004,,,,UNSECURE,SAST
+CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java,165,1,SAST-005,,,,UNSECURE,SAST
+CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java,218,1,SAST-006,,,,UNSECURE,SAST
+CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java,50,1,SAST-007,,,,UNSECURE,SAST
+CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java,77,1,SAST-008,,,,UNSECURE,SAST
+CWE-89,SQL Injection,src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java,102,1,SAST-009,,,,UNSECURE,SAST
+CWE-79,Reflected XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java,45,1,SAST-010,,,,UNSECURE,SAST
+CWE-79,Reflected XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java,72,1,SAST-011,,,,UNSECURE,SAST
+CWE-79,Reflected XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java,101,1,SAST-012,,,,UNSECURE,SAST
+CWE-79,Reflected XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java,56,1,SAST-013,,,,UNSECURE,SAST
+CWE-79,Reflected XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java,72,1,SAST-014,,,,UNSECURE,SAST
+CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,101,1,SAST-015,,,,UNSECURE,SAST
+CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,119,1,SAST-016,,,,UNSECURE,SAST
+CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,141,1,SAST-017,,,,UNSECURE,SAST
+CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,165,1,SAST-018,,,,UNSECURE,SAST
+CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,196,1,SAST-019,,,,UNSECURE,SAST
+CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,226,1,SAST-020,,,,UNSECURE,SAST
+CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,257,1,SAST-021,,,,UNSECURE,SAST
+CWE-79,Persistent XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/persistent/PersistentXSSInHTMLTagVulnerability.java,276,1,SAST-022,,,,UNSECURE,SAST
+CWE-22,Path Traversal,src/main/java/org/sasanlabs/service/vulnerability/pathTraversal/PathTraversalVulnerability.java,65,12,SAST-023,,,,UNSECURE,SAST
+CWE-601,Open Redirect,src/main/java/org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java,66,6,SAST-024,,,,UNSECURE,SAST
+CWE-601,Open Redirect,src/main/java/org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java,214,1,SAST-025,,,,UNSECURE,SAST
+CWE-601,Open Redirect,src/main/java/org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java,244,1,SAST-026,,,,UNSECURE,SAST
+CWE-77,Command Injection,src/main/java/org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java,46,5,SAST-027,,,,UNSECURE,SAST
+CWE-77,Command Injection,src/main/java/org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java,51,5,SAST-028,,,,UNSECURE,SAST
+CWE-434,Unrestricted File Upload,src/main/java/org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java,117,9,SAST-029,,,,UNSECURE,SAST
+CWE-79,Reflected XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java,88,1,SAST-030,,,,UNSECURE,SAST
+CWE-79,Reflected XSS,src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java,108,1,SAST-031,,,,UNSECURE,SAST
+CWE-327,Cryptographic Failures,src/main/java/org/sasanlabs/service/vulnerability/cryptographicFailures/CryptographicFailuresVulnerability.java,60,1,SAST-032,,,,UNSECURE,SAST
+CWE-327,Cryptographic Failures,src/main/java/org/sasanlabs/service/vulnerability/cryptographicFailures/CryptographicFailuresVulnerability.java,85,1,SAST-033,,,,UNSECURE,SAST
+CWE-330,Cryptographic Failures,src/main/java/org/sasanlabs/service/vulnerability/cryptographicFailures/CryptographicFailuresVulnerability.java,110,1,SAST-034,,,,UNSECURE,SAST
+CWE-326,Cryptographic Failures,src/main/java/org/sasanlabs/service/vulnerability/cryptographicFailures/CryptographicFailuresVulnerability.java,145,1,SAST-035,,,,UNSECURE,SAST
+CWE-89,ERROR_BASED_SQL_INJECTION,,,,AGENT-001,AuthenticationVulnerability,/AuthenticationVulnerability/LEVEL_1,GET,UNSECURE,AGENT
+CWE-256,PLAINTEXT_PASSWORD_STORAGE,,,,AGENT-002,AuthenticationVulnerability,/AuthenticationVulnerability/LEVEL_2,GET,UNSECURE,AGENT
+CWE-256,PLAINTEXT_PASSWORD_STORAGE,,,,AGENT-003,AuthenticationVulnerability,/AuthenticationVulnerability/LEVEL_3,GET,UNSECURE,AGENT
+CWE-916,WEAK_PASSWORD_HASHING,,,,AGENT-004,AuthenticationVulnerability,/AuthenticationVulnerability/LEVEL_4,GET,UNSECURE,AGENT
+CWE-916,WEAK_PASSWORD_HASHING,,,,AGENT-005,AuthenticationVulnerability,/AuthenticationVulnerability/LEVEL_5,GET,UNSECURE,AGENT
+CWE-916,WEAK_PASSWORD_HASHING,,,,AGENT-006,AuthenticationVulnerability,/AuthenticationVulnerability/LEVEL_6,GET,UNSECURE,AGENT
+CWE-204,USERNAME_ENUMERATION,,,,AGENT-007,AuthenticationVulnerability,/AuthenticationVulnerability/LEVEL_7,GET,UNSECURE,AGENT
+CWE-916,WEAK_PASSWORD_HASHING,,,,AGENT-008,AuthenticationVulnerability,/AuthenticationVulnerability/LEVEL_8,POST,UNSECURE,AGENT
+CWE-204,USERNAME_ENUMERATION,,,,AGENT-009,AuthenticationVulnerability,/AuthenticationVulnerability/LEVEL_9,POST,SECURE,AGENT
+CWE-916,WEAK_PASSWORD_HASHING,,,,AGENT-010,AuthenticationVulnerability,/AuthenticationVulnerability/LEVEL_10,POST,UNSECURE,AGENT
+CWE-89,BLIND_SQL_INJECTION,,,,AGENT-011,BlindSQLInjectionVulnerability,/BlindSQLInjectionVulnerability/LEVEL_1,GET,UNSECURE,AGENT
+CWE-89,BLIND_SQL_INJECTION,,,,AGENT-012,BlindSQLInjectionVulnerability,/BlindSQLInjectionVulnerability/LEVEL_2,GET,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-013,CachePoisoning,/CachePoisoning/LEVEL_1,GET,UNSECURE,AGENT
+CWE-349,WEB_CACHE_POISONING,,,,AGENT-014,CachePoisoning,/CachePoisoning/LEVEL_1,GET,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-015,CachePoisoning,/CachePoisoning/LEVEL_2,GET,UNSECURE,AGENT
+CWE-349,WEB_CACHE_POISONING,,,,AGENT-016,CachePoisoning,/CachePoisoning/LEVEL_2,GET,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-017,CachePoisoning,/CachePoisoning/LEVEL_3,GET,UNSECURE,AGENT
+CWE-349,WEB_CACHE_POISONING,,,,AGENT-018,CachePoisoning,/CachePoisoning/LEVEL_3,GET,UNSECURE,AGENT
+CWE-349,WEB_CACHE_POISONING,,,,AGENT-019,CachePoisoning,/CachePoisoning/LEVEL_4,GET,UNSECURE,AGENT
+CWE-349,WEB_CACHE_POISONING,,,,AGENT-020,CachePoisoning,/CachePoisoning/LEVEL_5,GET,SECURE,AGENT
+CWE-1021,CLICKJACKING,,,,AGENT-021,ClickjackingVulnerability,/ClickjackingVulnerability/LEVEL_1,GET,UNSECURE,AGENT
+CWE-1021,CLICKJACKING,,,,AGENT-022,ClickjackingVulnerability,/ClickjackingVulnerability/LEVEL_2,GET,UNSECURE,AGENT
+CWE-1021,CLICKJACKING,,,,AGENT-023,ClickjackingVulnerability,/ClickjackingVulnerability/LEVEL_3,GET,UNSECURE,AGENT
+CWE-1021,CLICKJACKING,,,,AGENT-024,ClickjackingVulnerability,/ClickjackingVulnerability/LEVEL_6,GET,UNSECURE,AGENT
+CWE-1021,CLICKJACKING,,,,AGENT-025,ClickjackingVulnerability,/ClickjackingVulnerability/LEVEL_7,GET,UNSECURE,AGENT
+CWE-77,COMMAND_INJECTION,,,,AGENT-026,CommandInjection,/CommandInjection/LEVEL_1,GET,UNSECURE,AGENT
+CWE-77,COMMAND_INJECTION,,,,AGENT-027,CommandInjection,/CommandInjection/LEVEL_2,GET,UNSECURE,AGENT
+CWE-77,COMMAND_INJECTION,,,,AGENT-028,CommandInjection,/CommandInjection/LEVEL_3,GET,UNSECURE,AGENT
+CWE-77,COMMAND_INJECTION,,,,AGENT-029,CommandInjection,/CommandInjection/LEVEL_4,GET,UNSECURE,AGENT
+CWE-77,COMMAND_INJECTION,,,,AGENT-030,CommandInjection,/CommandInjection/LEVEL_5,GET,UNSECURE,AGENT
+CWE-326,INSECURE_CRYPTOGRAPHIC_STORAGE,,,,AGENT-031,CryptographicFailures,/CryptographicFailures/LEVEL_1,GET,UNSECURE,AGENT
+CWE-326,INSECURE_CRYPTOGRAPHIC_STORAGE,,,,AGENT-032,CryptographicFailures,/CryptographicFailures/LEVEL_2,GET,UNSECURE,AGENT
+CWE-330,USE_OF_BROKEN_CRYPTOGRAPHIC_ALGORITHM,,,,AGENT-033,CryptographicFailures,/CryptographicFailures/LEVEL_3,GET,UNSECURE,AGENT
+CWE-330,USE_OF_BROKEN_CRYPTOGRAPHIC_ALGORITHM,,,,AGENT-034,CryptographicFailures,/CryptographicFailures/LEVEL_4,GET,UNSECURE,AGENT
+CWE-327,WEAK_CRYPTOGRAPHIC_HASH,,,,AGENT-035,CryptographicFailures,/CryptographicFailures/LEVEL_5,GET,UNSECURE,AGENT
+CWE-327,WEAK_CRYPTOGRAPHIC_HASH,,,,AGENT-036,CryptographicFailures,/CryptographicFailures/LEVEL_6,GET,UNSECURE,AGENT
+CWE-327,WEAK_CRYPTOGRAPHIC_HASH,,,,AGENT-037,CryptographicFailures,/CryptographicFailures/LEVEL_7,GET,UNSECURE,AGENT
+CWE-327,WEAK_CRYPTOGRAPHIC_HASH,,,,AGENT-038,CryptographicFailures,/CryptographicFailures/LEVEL_8,GET,UNSECURE,AGENT
+CWE-327,WEAK_CRYPTOGRAPHIC_HASH,,,,AGENT-039,CryptographicFailures,/CryptographicFailures/LEVEL_9,GET,UNSECURE,AGENT
+CWE-330,USE_OF_BROKEN_CRYPTOGRAPHIC_ALGORITHM,,,,AGENT-040,CryptographicFailures,/CryptographicFailures/LEVEL_10,GET,UNSECURE,AGENT
+CWE-330,USE_OF_BROKEN_CRYPTOGRAPHIC_ALGORITHM,,,,AGENT-041,CryptographicFailures,/CryptographicFailures/LEVEL_11,GET,SECURE,AGENT
+CWE-89,ERROR_BASED_SQL_INJECTION,,,,AGENT-042,ErrorBasedSQLInjectionVulnerability,/ErrorBasedSQLInjectionVulnerability/LEVEL_1,GET,UNSECURE,AGENT
+CWE-89,ERROR_BASED_SQL_INJECTION,,,,AGENT-043,ErrorBasedSQLInjectionVulnerability,/ErrorBasedSQLInjectionVulnerability/LEVEL_2,GET,UNSECURE,AGENT
+CWE-89,ERROR_BASED_SQL_INJECTION,,,,AGENT-044,ErrorBasedSQLInjectionVulnerability,/ErrorBasedSQLInjectionVulnerability/LEVEL_3,GET,UNSECURE,AGENT
+CWE-89,ERROR_BASED_SQL_INJECTION,,,,AGENT-045,ErrorBasedSQLInjectionVulnerability,/ErrorBasedSQLInjectionVulnerability/LEVEL_4,GET,UNSECURE,AGENT
+CWE-601,OPEN_REDIRECT_3XX_STATUS_CODE,,,,AGENT-046,Http3xxStatusCodeBasedInjection,/Http3xxStatusCodeBasedInjection/LEVEL_1,GET,UNSECURE,AGENT
+CWE-601,OPEN_REDIRECT_3XX_STATUS_CODE,,,,AGENT-047,Http3xxStatusCodeBasedInjection,/Http3xxStatusCodeBasedInjection/LEVEL_2,GET,UNSECURE,AGENT
+CWE-601,OPEN_REDIRECT_3XX_STATUS_CODE,,,,AGENT-048,Http3xxStatusCodeBasedInjection,/Http3xxStatusCodeBasedInjection/LEVEL_3,GET,UNSECURE,AGENT
+CWE-601,OPEN_REDIRECT_3XX_STATUS_CODE,,,,AGENT-049,Http3xxStatusCodeBasedInjection,/Http3xxStatusCodeBasedInjection/LEVEL_4,GET,UNSECURE,AGENT
+CWE-601,OPEN_REDIRECT_3XX_STATUS_CODE,,,,AGENT-050,Http3xxStatusCodeBasedInjection,/Http3xxStatusCodeBasedInjection/LEVEL_5,GET,UNSECURE,AGENT
+CWE-601,OPEN_REDIRECT_3XX_STATUS_CODE,,,,AGENT-051,Http3xxStatusCodeBasedInjection,/Http3xxStatusCodeBasedInjection/LEVEL_6,GET,UNSECURE,AGENT
+CWE-601,OPEN_REDIRECT_3XX_STATUS_CODE,,,,AGENT-052,Http3xxStatusCodeBasedInjection,/Http3xxStatusCodeBasedInjection/LEVEL_7,GET,UNSECURE,AGENT
+CWE-601,OPEN_REDIRECT_3XX_STATUS_CODE,,,,AGENT-053,Http3xxStatusCodeBasedInjection,/Http3xxStatusCodeBasedInjection/LEVEL_9,GET,UNSECURE,AGENT
+CWE-601,OPEN_REDIRECT_3XX_STATUS_CODE,,,,AGENT-054,Http3xxStatusCodeBasedInjection,/Http3xxStatusCodeBasedInjection/LEVEL_10,GET,UNSECURE,AGENT
+CWE-601,OPEN_REDIRECT_3XX_STATUS_CODE,,,,AGENT-055,Http3xxStatusCodeBasedInjection,/Http3xxStatusCodeBasedInjection/LEVEL_11,GET,SECURE,AGENT
+CWE-639,INSECURE_DIRECT_OBJECT_REFERENCE,,,,AGENT-056,IDORVulnerability,/IDORVulnerability/LEVEL_1,GET,UNSECURE,AGENT
+CWE-639,INSECURE_DIRECT_OBJECT_REFERENCE,,,,AGENT-057,IDORVulnerability,/IDORVulnerability/LEVEL_2,GET,UNSECURE,AGENT
+CWE-639,INSECURE_DIRECT_OBJECT_REFERENCE,,,,AGENT-058,IDORVulnerability,/IDORVulnerability/LEVEL_3,GET,UNSECURE,AGENT
+CWE-639,INSECURE_DIRECT_OBJECT_REFERENCE,,,,AGENT-059,IDORVulnerability,/IDORVulnerability/LEVEL_4,GET,UNSECURE,AGENT
+CWE-639,INSECURE_DIRECT_OBJECT_REFERENCE,,,,AGENT-060,IDORVulnerability,/IDORVulnerability/LEVEL_5,GET,SECURE,AGENT
+CWE-522,CLIENT_SIDE_VULNERABLE_JWT,,,,AGENT-061,JWTVulnerability,/JWTVulnerability/LEVEL_1,GET,UNSECURE,AGENT
+CWE-522,CLIENT_SIDE_VULNERABLE_JWT,,,,AGENT-062,JWTVulnerability,/JWTVulnerability/LEVEL_2,GET,UNSECURE,AGENT
+CWE-522,CLIENT_SIDE_VULNERABLE_JWT,,,,AGENT-063,JWTVulnerability,/JWTVulnerability/LEVEL_3,GET,UNSECURE,AGENT
+CWE-522,CLIENT_SIDE_VULNERABLE_JWT,,,,AGENT-064,JWTVulnerability,/JWTVulnerability/LEVEL_4,GET,UNSECURE,AGENT
+CWE-1188,INSECURE_CONFIGURATION_JWT,,,,AGENT-065,JWTVulnerability,/JWTVulnerability/LEVEL_4,GET,UNSECURE,AGENT
+CWE-522,CLIENT_SIDE_VULNERABLE_JWT,,,,AGENT-066,JWTVulnerability,/JWTVulnerability/LEVEL_5,GET,UNSECURE,AGENT
+CWE-347,SERVER_SIDE_VULNERABLE_JWT,,,,AGENT-067,JWTVulnerability,/JWTVulnerability/LEVEL_5,GET,UNSECURE,AGENT
+CWE-522,CLIENT_SIDE_VULNERABLE_JWT,,,,AGENT-068,JWTVulnerability,/JWTVulnerability/LEVEL_6,GET,UNSECURE,AGENT
+CWE-347,SERVER_SIDE_VULNERABLE_JWT,,,,AGENT-069,JWTVulnerability,/JWTVulnerability/LEVEL_6,GET,UNSECURE,AGENT
+CWE-522,CLIENT_SIDE_VULNERABLE_JWT,,,,AGENT-070,JWTVulnerability,/JWTVulnerability/LEVEL_7,GET,UNSECURE,AGENT
+CWE-522,CLIENT_SIDE_VULNERABLE_JWT,,,,AGENT-071,JWTVulnerability,/JWTVulnerability/LEVEL_8,GET,UNSECURE,AGENT
+CWE-347,SERVER_SIDE_VULNERABLE_JWT,,,,AGENT-072,JWTVulnerability,/JWTVulnerability/LEVEL_8,GET,UNSECURE,AGENT
+CWE-522,CLIENT_SIDE_VULNERABLE_JWT,,,,AGENT-073,JWTVulnerability,/JWTVulnerability/LEVEL_9,GET,UNSECURE,AGENT
+CWE-347,SERVER_SIDE_VULNERABLE_JWT,,,,AGENT-074,JWTVulnerability,/JWTVulnerability/LEVEL_9,GET,UNSECURE,AGENT
+CWE-522,CLIENT_SIDE_VULNERABLE_JWT,,,,AGENT-075,JWTVulnerability,/JWTVulnerability/LEVEL_10,GET,UNSECURE,AGENT
+CWE-347,SERVER_SIDE_VULNERABLE_JWT,,,,AGENT-076,JWTVulnerability,/JWTVulnerability/LEVEL_10,GET,UNSECURE,AGENT
+CWE-113,HEADER_INJECTION,,,,AGENT-077,JWTVulnerability,/JWTVulnerability/LEVEL_13,GET,UNSECURE,AGENT
+CWE-1188,INSECURE_CONFIGURATION_JWT,,,,AGENT-078,JWTVulnerability,/JWTVulnerability/LEVEL_14,GET,UNSECURE,AGENT
+CWE-347,SERVER_SIDE_VULNERABLE_JWT,,,,AGENT-079,JWTVulnerability,/JWTVulnerability/LEVEL_15,GET,UNSECURE,AGENT
+CWE-1188,INSECURE_CONFIGURATION_JWT,,,,AGENT-080,JWTVulnerability,/JWTVulnerability/LEVEL_16,GET,UNSECURE,AGENT
+CWE-90,LDAP_INJECTION,,,,AGENT-081,LDAPInjectionVulnerability,/LDAPInjectionVulnerability/LEVEL_1,GET,UNSECURE,AGENT
+CWE-90,LDAP_INJECTION,,,,AGENT-082,LDAPInjectionVulnerability,/LDAPInjectionVulnerability/LEVEL_2,GET,UNSECURE,AGENT
+CWE-90,LDAP_INJECTION,,,,AGENT-083,LDAPInjectionVulnerability,/LDAPInjectionVulnerability/LEVEL_3,GET,UNSECURE,AGENT
+CWE-90,LDAP_INJECTION,,,,AGENT-084,LDAPInjectionVulnerability,/LDAPInjectionVulnerability/LEVEL_4,GET,UNSECURE,AGENT
+CWE-90,LDAP_INJECTION,,,,AGENT-085,LDAPInjectionVulnerability,/LDAPInjectionVulnerability/LEVEL_5,GET,UNSECURE,AGENT
+CWE-90,LDAP_INJECTION,,,,AGENT-086,LDAPInjectionVulnerability,/LDAPInjectionVulnerability/LEVEL_6,GET,SECURE,AGENT
+CWE-22,PATH_TRAVERSAL,,,,AGENT-087,PathTraversal,/PathTraversal/LEVEL_1,GET,UNSECURE,AGENT
+CWE-22,PATH_TRAVERSAL,,,,AGENT-088,PathTraversal,/PathTraversal/LEVEL_2,GET,UNSECURE,AGENT
+CWE-22,PATH_TRAVERSAL,,,,AGENT-089,PathTraversal,/PathTraversal/LEVEL_3,GET,UNSECURE,AGENT
+CWE-22,PATH_TRAVERSAL,,,,AGENT-090,PathTraversal,/PathTraversal/LEVEL_4,GET,UNSECURE,AGENT
+CWE-22,PATH_TRAVERSAL,,,,AGENT-091,PathTraversal,/PathTraversal/LEVEL_5,GET,UNSECURE,AGENT
+CWE-22,PATH_TRAVERSAL,,,,AGENT-092,PathTraversal,/PathTraversal/LEVEL_6,GET,UNSECURE,AGENT
+CWE-22,PATH_TRAVERSAL,,,,AGENT-093,PathTraversal,/PathTraversal/LEVEL_7,GET,UNSECURE,AGENT
+CWE-22,PATH_TRAVERSAL,,,,AGENT-094,PathTraversal,/PathTraversal/LEVEL_8,GET,UNSECURE,AGENT
+CWE-22,PATH_TRAVERSAL,,,,AGENT-095,PathTraversal,/PathTraversal/LEVEL_9,GET,UNSECURE,AGENT
+CWE-22,PATH_TRAVERSAL,,,,AGENT-096,PathTraversal,/PathTraversal/LEVEL_10,GET,UNSECURE,AGENT
+CWE-22,PATH_TRAVERSAL,,,,AGENT-097,PathTraversal,/PathTraversal/LEVEL_11,GET,UNSECURE,AGENT
+CWE-22,PATH_TRAVERSAL,,,,AGENT-098,PathTraversal,/PathTraversal/LEVEL_12,GET,UNSECURE,AGENT
+CWE-79,PERSISTENT_XSS,,,,AGENT-099,PersistentXSSInHTMLTagVulnerability,/PersistentXSSInHTMLTagVulnerability/LEVEL_1,GET,UNSECURE,AGENT
+CWE-79,PERSISTENT_XSS,,,,AGENT-100,PersistentXSSInHTMLTagVulnerability,/PersistentXSSInHTMLTagVulnerability/LEVEL_2,GET,UNSECURE,AGENT
+CWE-79,PERSISTENT_XSS,,,,AGENT-101,PersistentXSSInHTMLTagVulnerability,/PersistentXSSInHTMLTagVulnerability/LEVEL_3,GET,UNSECURE,AGENT
+CWE-79,PERSISTENT_XSS,,,,AGENT-102,PersistentXSSInHTMLTagVulnerability,/PersistentXSSInHTMLTagVulnerability/LEVEL_4,GET,UNSECURE,AGENT
+CWE-79,PERSISTENT_XSS,,,,AGENT-103,PersistentXSSInHTMLTagVulnerability,/PersistentXSSInHTMLTagVulnerability/LEVEL_5,GET,UNSECURE,AGENT
+CWE-79,PERSISTENT_XSS,,,,AGENT-104,PersistentXSSInHTMLTagVulnerability,/PersistentXSSInHTMLTagVulnerability/LEVEL_6,GET,UNSECURE,AGENT
+CWE-918,SIMPLE_SSRF,,,,AGENT-105,SSRFVulnerability,/SSRFVulnerability/LEVEL_1,GET,UNSECURE,AGENT
+CWE-918,SIMPLE_SSRF,,,,AGENT-106,SSRFVulnerability,/SSRFVulnerability/LEVEL_2,GET,UNSECURE,AGENT
+CWE-918,SIMPLE_SSRF,,,,AGENT-107,SSRFVulnerability,/SSRFVulnerability/LEVEL_3,GET,UNSECURE,AGENT
+CWE-918,SIMPLE_SSRF,,,,AGENT-108,SSRFVulnerability,/SSRFVulnerability/LEVEL_4,GET,UNSECURE,AGENT
+CWE-918,SIMPLE_SSRF,,,,AGENT-109,SSRFVulnerability,/SSRFVulnerability/LEVEL_5,GET,SECURE,AGENT
+CWE-89,UNION_BASED_SQL_INJECTION,,,,AGENT-110,UnionBasedSQLInjectionVulnerability,/UnionBasedSQLInjectionVulnerability/LEVEL_1,GET,UNSECURE,AGENT
+CWE-89,UNION_BASED_SQL_INJECTION,,,,AGENT-111,UnionBasedSQLInjectionVulnerability,/UnionBasedSQLInjectionVulnerability/LEVEL_2,GET,UNSECURE,AGENT
+CWE-89,UNION_BASED_SQL_INJECTION,,,,AGENT-112,UnionBasedSQLInjectionVulnerability,/UnionBasedSQLInjectionVulnerability/LEVEL_3,GET,SECURE,AGENT
+CWE-22,PATH_TRAVERSAL,,,,AGENT-113,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_1,POST,UNSECURE,AGENT
+CWE-79,PERSISTENT_XSS,,,,AGENT-114,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_1,POST,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-115,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_1,POST,UNSECURE,AGENT
+CWE-434,UNRESTRICTED_FILE_UPLOAD,,,,AGENT-116,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_1,POST,UNSECURE,AGENT
+CWE-79,PERSISTENT_XSS,,,,AGENT-117,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_2,POST,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-118,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_2,POST,UNSECURE,AGENT
+CWE-434,UNRESTRICTED_FILE_UPLOAD,,,,AGENT-119,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_2,POST,UNSECURE,AGENT
+CWE-79,PERSISTENT_XSS,,,,AGENT-120,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_3,POST,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-121,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_3,POST,UNSECURE,AGENT
+CWE-434,UNRESTRICTED_FILE_UPLOAD,,,,AGENT-122,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_3,POST,UNSECURE,AGENT
+CWE-79,PERSISTENT_XSS,,,,AGENT-123,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_4,POST,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-124,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_4,POST,UNSECURE,AGENT
+CWE-434,UNRESTRICTED_FILE_UPLOAD,,,,AGENT-125,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_4,POST,UNSECURE,AGENT
+CWE-79,PERSISTENT_XSS,,,,AGENT-126,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_5,POST,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-127,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_5,POST,UNSECURE,AGENT
+CWE-434,UNRESTRICTED_FILE_UPLOAD,,,,AGENT-128,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_5,POST,UNSECURE,AGENT
+CWE-79,PERSISTENT_XSS,,,,AGENT-129,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_6,POST,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-130,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_6,POST,UNSECURE,AGENT
+CWE-434,UNRESTRICTED_FILE_UPLOAD,,,,AGENT-131,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_6,POST,UNSECURE,AGENT
+CWE-79,PERSISTENT_XSS,,,,AGENT-132,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_7,POST,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-133,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_7,POST,UNSECURE,AGENT
+CWE-434,UNRESTRICTED_FILE_UPLOAD,,,,AGENT-134,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_7,POST,UNSECURE,AGENT
+CWE-22,PATH_TRAVERSAL,,,,AGENT-135,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_8,POST,UNSECURE,AGENT
+CWE-730,DENIAL_OF_SERVICE,,,,AGENT-136,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_9,POST,UNSECURE,AGENT
+CWE-22,PATH_TRAVERSAL,,,,AGENT-137,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_9,POST,UNSECURE,AGENT
+CWE-400,UNCONTROLLED_RESOURCE_CONSUMPTION,,,,AGENT-138,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_9,POST,UNSECURE,AGENT
+CWE-79,PERSISTENT_XSS,,,,AGENT-139,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_10,POST,SECURE,AGENT
+CWE-434,UNRESTRICTED_FILE_UPLOAD,,,,AGENT-140,UnrestrictedFileUpload,/UnrestrictedFileUpload/LEVEL_10,POST,SECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-141,XSSInImgTagAttribute,/XSSInImgTagAttribute/LEVEL_1,GET,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-142,XSSInImgTagAttribute,/XSSInImgTagAttribute/LEVEL_2,GET,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-143,XSSInImgTagAttribute,/XSSInImgTagAttribute/LEVEL_3,GET,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-144,XSSInImgTagAttribute,/XSSInImgTagAttribute/LEVEL_4,GET,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-145,XSSInImgTagAttribute,/XSSInImgTagAttribute/LEVEL_5,GET,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-146,XSSInImgTagAttribute,/XSSInImgTagAttribute/LEVEL_6,GET,SECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-147,XSSInImgTagAttribute,/XSSInImgTagAttribute/LEVEL_7,GET,SECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-148,XSSWithHtmlTagInjection,/XSSWithHtmlTagInjection/LEVEL_1,GET,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-149,XSSWithHtmlTagInjection,/XSSWithHtmlTagInjection/LEVEL_2,GET,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-150,XSSWithHtmlTagInjection,/XSSWithHtmlTagInjection/LEVEL_3,GET,UNSECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-151,XSSWithHtmlTagInjection,/XSSWithHtmlTagInjection/LEVEL_4,GET,SECURE,AGENT
+CWE-79,REFLECTED_XSS,,,,AGENT-152,XSSWithHtmlTagInjection,/XSSWithHtmlTagInjection/LEVEL_5,GET,SECURE,AGENT
+CWE-611,XXE,,,,AGENT-153,XXEVulnerability,/XXEVulnerability/LEVEL_1,POST,UNSECURE,AGENT
+CWE-611,XXE,,,,AGENT-154,XXEVulnerability,/XXEVulnerability/LEVEL_2,POST,UNSECURE,AGENT
+CWE-611,XXE,,,,AGENT-155,XXEVulnerability,/XXEVulnerability/LEVEL_3,POST,SECURE,AGENT
+CWE-611,XXE,,,,AGENT-156,XXEVulnerability,/XXEVulnerability/LEVEL_4,POST,SECURE,AGENT
+CWE-611,XXE,,,,AGENT-157,XXEVulnerability,/XXEVulnerability/LEVEL_5,POST,SECURE,AGENT

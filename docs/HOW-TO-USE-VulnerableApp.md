@@ -56,22 +56,26 @@ vulnerabilityTypes: List of vulnerability types present in the endpoint to valid
 Note: [VulnerabilityTypes](https://github.com/SasanLabs/VulnerableApp/blob/master/src/main/java/org/sasanlabs/vulnerability/types/VulnerabilityType.java) are custom values as no single standard represent all the Vulnerabilities. However we are working on creating a mapping between VulnerabilityType and CWE/WASC.
 
 ## Benchmarking your scanner
-VulnerableApp ships a comparator that grades a scanner's findings against either ground-truth source above and writes a coverage / missed / unmatched report. Both DAST and SAST scanners are supported via the same endpoint:
+VulnerableApp ships a comparator that grades a scanner's findings against built-in ground truth and writes a coverage / missed / unmatched report. DAST, SAST, and black-box AGENT submissions are supported via the same endpoint:
 - Endpoint: `POST http://<baseurl>/VulnerableApp/scanner/benchmark`
 - Request body — pick the shape that matches your scanner:
    - DAST: `{ tool, scanType: "DAST", findings: [ { url, type, cwe, wascId } ] }` (the `scanType` field is optional and defaults to `DAST`; `type` / `cwe` / `wascId` are individually optional — any one axis matching is enough)
    - SAST: `{ tool, scanType: "SAST", findings: [ { filePath, line, cwe, type } ] }`
+   - AGENT: `{ tool, scanType: "AGENT", findings: [ { url, method, cwe, type, vulnerabilityKey, evidence } ] }`
 - Response body and `benchmarks/<tool>-results.json` on disk: coverage report
 
 Running the scanner itself is out of scope — you supply the JSON. See [`benchmarks/README.md`](https://github.com/SasanLabs/VulnerableApp/blob/master/benchmarks/README.md) for the full input/output schemas, matching rules, canonical vulnerability type vocabulary, and `curl` examples.
 
 ## Details about ExpectedIssues.csv
-[ExpectedIssues.csv](https://github.com/SasanLabs/VulnerableApp/blob/master/scanner/sast/expectedIssues.csv) contains following information which SAST tools can leverage:
+[ExpectedIssues.csv](https://github.com/SasanLabs/VulnerableApp/blob/master/scanner/sast/expectedIssues.csv) contains following information which SAST tools and AGENT scoring can leverage:
 ```
 Vulnerability Type: type of vulnerability present
 CWE: CWE id for the Vulnerability
-WASC: WASC id for the Vulnerability
 File: Full path of the file containing the Vulnerability
 Line: Line number in the file containing the Vulnerability
-Source: Number of times that line is executed. 
+Source: Number of times that line is executed.
+Endpoint: App route for black-box AGENT scoring
+Method: HTTP method for black-box AGENT scoring
+Variant: whether the route is UNSECURE or SECURE
+Mode: SAST or AGENT
 ```

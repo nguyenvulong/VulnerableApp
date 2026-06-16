@@ -1,0 +1,20 @@
+{
+  "tool": "ExternalAgent",
+  "scanType": "AGENT",
+  "findings": [
+    {
+      "url": "/BlindSQLInjectionVulnerability/LEVEL_1",
+      "method": "GET",
+      "cwe": "CWE-89",
+      "evidence": "The response changed when a true SQL predicate was replaced with a false predicate.",
+      "request": "GET /VulnerableApp/BlindSQLInjectionVulnerability/LEVEL_1?...",
+      "responseSnippet": "Different result set for false predicate"
+    },
+    {
+      "url": "/XSSWithHtmlTagInjection/LEVEL_4",
+      "method": "GET",
+      "type": "REFLECTED_XSS",
+      "evidence": "This is intentionally against a SECURE row and should be unmatched."
+    }
+  ]
+}

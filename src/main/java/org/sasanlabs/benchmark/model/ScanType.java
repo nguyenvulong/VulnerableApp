@@ -9,7 +9,8 @@ import java.util.Locale;
  */
 public enum ScanType {
     DAST,
-    SAST;
+    SAST,
+    AGENT;
 
     @JsonCreator
     public static ScanType fromString(String value) {

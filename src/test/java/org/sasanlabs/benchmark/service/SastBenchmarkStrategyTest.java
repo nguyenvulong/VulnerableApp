@@ -219,6 +219,29 @@ class SastBenchmarkStrategyTest {
     }
 
     @Test
+    void agentRowsInSharedCsv_areIgnored() throws Exception {
+        when(provider.getExpectedIssues())
+                .thenReturn(
+                        Arrays.asList(
+                                expected("CWE-89", "SQL Injection", SQLI_FILE, 56),
+                                agentExpected(
+                                        "CWE-79",
+                                        "REFLECTED_XSS",
+                                        "XSSWithHtmlTagInjection",
+                                        "/XSSWithHtmlTagInjection/LEVEL_1",
+                                        "GET")));
+
+        BenchmarkResult result =
+                strategy.compare(
+                        new ScannerFindings("Semgrep", ScanType.SAST, Collections.emptyList()));
+
+        assertThat(result.getTotalExpected()).isEqualTo(1);
+        assertThat(result.getMissedItems())
+                .extracting(Finding::getFilePath, Finding::getLine, Finding::getCwe)
+                .containsExactly(tuple(SQLI_FILE, 56, "CWE-89"));
+    }
+
+    @Test
     void filePathNormalization_unitCases() {
         assertThat(SastBenchmarkStrategy.normalizeFilePath("./src/main/java/Foo.java"))
                 .isEqualTo("src/main/java/Foo.java");
@@ -231,6 +254,22 @@ class SastBenchmarkStrategyTest {
 
     private static ExpectedIssue expected(String cwe, String type, String file, int line) {
         return new ExpectedIssue(cwe, type, file, line, 1);
+    }
+
+    private static ExpectedIssue agentExpected(
+            String cwe, String type, String key, String endpoint, String method) {
+        return new ExpectedIssue(
+                cwe,
+                type,
+                null,
+                null,
+                null,
+                "agent-test",
+                key,
+                endpoint,
+                method,
+                "UNSECURE",
+                "AGENT");
     }
 
     private static Finding sastFinding(String file, int line, String cwe, String type) {

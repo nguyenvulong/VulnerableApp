@@ -43,6 +43,31 @@ class CsvExpectedIssuesProviderTest {
     }
 
     @Test
+    void parsesExpandedAgentRowsWithBlankSastColumns(@TempDir Path tempDir) throws Exception {
+        Path csv = tempDir.resolve("expected.csv");
+        write(
+                csv,
+                HEADER.trim()
+                        + ",Issue Id,Vulnerability Key,Endpoint,Method,Variant,Mode\n"
+                        + "CWE-89,BLIND_SQL_INJECTION,,,,agent-sqli-1,"
+                        + "BlindSQLInjectionVulnerability,/BlindSQLInjectionVulnerability/LEVEL_1,"
+                        + "GET,UNSECURE,AGENT\n");
+
+        List<ExpectedIssue> issues =
+                new CsvExpectedIssuesProvider(csv.toString()).getExpectedIssues();
+
+        assertThat(issues).hasSize(1);
+        ExpectedIssue issue = issues.get(0);
+        assertThat(issue.isAgentMode()).isTrue();
+        assertThat(issue.getIssueId()).isEqualTo("agent-sqli-1");
+        assertThat(issue.getVulnerabilityKey()).isEqualTo("BlindSQLInjectionVulnerability");
+        assertThat(issue.getEndpoint()).isEqualTo("/BlindSQLInjectionVulnerability/LEVEL_1");
+        assertThat(issue.getMethod()).isEqualTo("GET");
+        assertThat(issue.getVariant()).isEqualTo("UNSECURE");
+        assertThat(issue.getLine()).isNull();
+    }
+
+    @Test
     void trimsWhitespaceInsideCells(@TempDir Path tempDir) throws Exception {
         Path csv = tempDir.resolve("expected.csv");
         write(csv, HEADER + "CWE-22,Path Traversal,src/main/java/Baz.java,65,12 \n");

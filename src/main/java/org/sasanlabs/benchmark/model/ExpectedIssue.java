@@ -10,16 +10,54 @@ public class ExpectedIssue {
     private final String cwe;
     private final String vulnerabilityType;
     private final String filePath;
-    private final int line;
-    private final int numberOfSources;
+    private final Integer line;
+    private final Integer numberOfSources;
+    private final String issueId;
+    private final String vulnerabilityKey;
+    private final String endpoint;
+    private final String method;
+    private final String variant;
+    private final String mode;
 
     public ExpectedIssue(
             String cwe, String vulnerabilityType, String filePath, int line, int numberOfSources) {
+        this(
+                cwe,
+                vulnerabilityType,
+                filePath,
+                line,
+                numberOfSources,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "SAST");
+    }
+
+    public ExpectedIssue(
+            String cwe,
+            String vulnerabilityType,
+            String filePath,
+            Integer line,
+            Integer numberOfSources,
+            String issueId,
+            String vulnerabilityKey,
+            String endpoint,
+            String method,
+            String variant,
+            String mode) {
         this.cwe = cwe;
         this.vulnerabilityType = vulnerabilityType;
         this.filePath = filePath;
         this.line = line;
         this.numberOfSources = numberOfSources;
+        this.issueId = issueId;
+        this.vulnerabilityKey = vulnerabilityKey;
+        this.endpoint = endpoint;
+        this.method = method;
+        this.variant = variant;
+        this.mode = mode;
     }
 
     public String getCwe() {
@@ -34,11 +72,43 @@ public class ExpectedIssue {
         return filePath;
     }
 
-    public int getLine() {
+    public Integer getLine() {
         return line;
     }
 
-    public int getNumberOfSources() {
+    public Integer getNumberOfSources() {
         return numberOfSources;
+    }
+
+    public String getIssueId() {
+        return issueId;
+    }
+
+    public String getVulnerabilityKey() {
+        return vulnerabilityKey;
+    }
+
+    public String getEndpoint() {
+        return endpoint;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public String getVariant() {
+        return variant;
+    }
+
+    public String getMode() {
+        return mode;
+    }
+
+    public boolean isSastMode() {
+        return mode == null || mode.trim().isEmpty() || "SAST".equalsIgnoreCase(mode.trim());
+    }
+
+    public boolean isAgentMode() {
+        return "AGENT".equalsIgnoreCase(mode);
     }
 }

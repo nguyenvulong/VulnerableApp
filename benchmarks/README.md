@@ -1,11 +1,13 @@
 # Scanner Benchmark Framework
 
 This framework grades a security scanner against the ground truth that
-VulnerableApp already ships. It supports two scan modes today:
+VulnerableApp already ships. It supports three scan modes today:
 
 - **DAST** — graded against the live `/scanner` endpoint (URL + vulnerability type).
 - **SAST** — graded against `scanner/sast/expectedIssues.csv` (file path + line +
   CWE / vulnerability type).
+- **AGENT** — graded against the CSV's black-box endpoint inventory (URL + method
+  + vulnerability key/type/CWE + evidence).
 
 You POST the scanner's findings as JSON to `/scanner/benchmark`; the framework
 returns coverage, missed issues, and unmatched items (findings the scanner
@@ -25,6 +27,7 @@ omitted, it defaults to `DAST` so existing payloads keep working.
 |-------------------|---------------------------------------------|-------------------------------------------|
 | `DAST` (default)  | live `/scanner` endpoint                    | `url`, `type`                             |
 | `SAST`            | `scanner/sast/expectedIssues.csv`           | `filePath`, `line`, plus `cwe` and/or `type` |
+| `AGENT`           | `scanner/sast/expectedIssues.csv`           | `url`, `method`, evidence, plus `cwe`, `type`, or `vulnerabilityKey` |
 
 ## DAST input format
 
@@ -153,6 +156,48 @@ A scanner can emit either CWE, type, or both — whichever pair
 - **`Number of Sources` column:** present in the CSV for human reference; **not
   used for scoring** — full credit on first match.
 
+## AGENT input format
+
+```json
+{
+  "tool": "ExternalAgent",
+  "scanType": "AGENT",
+  "findings": [
+    {
+      "url": "/BlindSQLInjectionVulnerability/LEVEL_1",
+      "method": "GET",
+      "cwe": "CWE-89",
+      "evidence": "boolean condition changed the response body",
+      "request": "GET /VulnerableApp/BlindSQLInjectionVulnerability/LEVEL_1?...",
+      "responseSnippet": "..."
+    }
+  ]
+}
+```
+
+Agents should discover allowed black-box scope from:
+
+```text
+GET http://<baseurl>/VulnerableApp/scanner/agent/scope
+```
+
+That endpoint returns only URL and method pairs. It intentionally omits
+vulnerability labels, CWE values, variants, payloads, hints, and source
+locations.
+
+### AGENT matching rules
+
+A finding matches an expected CSV row when:
+
+1. The normalised **`url`** matches the CSV `Endpoint`, AND
+2. The **`method`** matches exactly, AND
+3. **`evidence`** is non-empty, AND
+4. Either **`cwe`**, **`type`**, or **`vulnerabilityKey`** matches the row.
+
+Only CSV rows with `Mode=AGENT` and `Variant=UNSECURE` count as expected
+findings. Reports against `SECURE` rows, reports with a wrong method, and
+reports without evidence are returned in `unmatchedItems`.
+
 ## Calling the endpoint
 
 Start VulnerableApp, then for either mode:
@@ -167,13 +212,18 @@ curl -X POST http://localhost:9090/VulnerableApp/scanner/benchmark \
 curl -X POST http://localhost:9090/VulnerableApp/scanner/benchmark \
   -H "Content-Type: application/json" \
   -d @benchmarks/samples/semgrep-sast-sample.json
+
+# AGENT
+curl -X POST http://localhost:9090/VulnerableApp/scanner/benchmark \
+  -H "Content-Type: application/json" \
+  -d @benchmarks/samples/agent-findings-sample.json
 ```
 
 The HTTP response contains the same JSON that gets persisted to disk.
 
 ## Output format
 
-The output schema is the same for DAST and SAST. The fields inside each
+The output schema is the same for DAST, SAST, and AGENT. The fields inside each
 `missedItems` / `unmatchedItems` entry vary by scan type (unused fields are
 omitted from the JSON).
 
@@ -196,12 +246,19 @@ For SAST runs, items look like:
 { "filePath": "src/main/java/.../Foo.java", "line": 56, "type": "SQL Injection", "cwe": "CWE-89" }
 ```
 
+For AGENT runs, missed items look like:
+
+```json
+{ "url": "/BlindSQLInjectionVulnerability/LEVEL_1", "method": "GET", "type": "BLIND_SQL_INJECTION", "cwe": "CWE-89", "vulnerabilityKey": "BlindSQLInjectionVulnerability" }
+```
+
 - `coverage` — `detected / totalExpected * 100`. Reported as `0.0` when ground
   truth is empty.
 - `totalExpected` — number of unique ground-truth items. For DAST, count of
   `(URL, vulnerabilityType)` pairs across all `UNSECURE` ground-truth entries
   (SECURE entries are intentionally clean and don't count). For SAST, count of
-  rows in the CSV.
+  CSV rows with `Mode=SAST`. For AGENT, count of CSV rows with `Mode=AGENT` and
+  `Variant=UNSECURE`.
 - `missedItems` — expected items the scanner did not report.
 - `unmatchedItems` — items the scanner reported that don't line up with any
   expected ground-truth row.

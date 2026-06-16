@@ -2,9 +2,13 @@ package org.sasanlabs.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
+import org.sasanlabs.beans.AgentScopeResponseBean;
 import org.sasanlabs.beans.AllEndPointsResponseBean;
 import org.sasanlabs.beans.ScannerMetaResponseBean;
 import org.sasanlabs.beans.ScannerResponseBean;
@@ -91,21 +95,40 @@ public class VulnerableAppRestController {
     @RequestMapping("/scanner")
     public List<ScannerResponseBean> getScannerRelatedInformation(HttpServletRequest request)
             throws JsonProcessingException, UnknownHostException {
+        return getAllSupportedEndPoints.getScannerRelatedEndPointInformation(buildAppUrl(request));
+    }
+
+    @GetMapping
+    @RequestMapping("/scanner/agent/scope")
+    public List<AgentScopeResponseBean> getAgentScope(HttpServletRequest request)
+            throws JsonProcessingException, UnknownHostException {
+        List<ScannerResponseBean> scannerEntries =
+                getAllSupportedEndPoints.getScannerRelatedEndPointInformation(buildAppUrl(request));
+        List<AgentScopeResponseBean> scope = new ArrayList<>();
+        Set<String> seen = new LinkedHashSet<>();
+        for (ScannerResponseBean entry : scannerEntries) {
+            String signature = entry.getUrl() + "::" + entry.getRequestMethod();
+            if (seen.add(signature)) {
+                scope.add(new AgentScopeResponseBean(entry.getUrl(), entry.getRequestMethod()));
+            }
+        }
+        return scope;
+    }
+
+    private String buildAppUrl(HttpServletRequest request) {
         String scheme = request.getScheme(); // http or https
         String serverName = request.getServerName(); // actual hostname/IP
         int serverPort = request.getServerPort(); // actual port
-        String appUrl =
-                new StringBuilder()
-                        .append(scheme)
-                        .append("://")
-                        .append(serverName)
-                        .append(FrameworkConstants.COLON)
-                        .append(serverPort)
-                        .append(FrameworkConstants.SLASH)
-                        .append(FrameworkConstants.VULNERABLE_APP)
-                        .append(FrameworkConstants.SLASH)
-                        .toString();
-        return getAllSupportedEndPoints.getScannerRelatedEndPointInformation(appUrl);
+        return new StringBuilder()
+                .append(scheme)
+                .append("://")
+                .append(serverName)
+                .append(FrameworkConstants.COLON)
+                .append(serverPort)
+                .append(FrameworkConstants.SLASH)
+                .append(FrameworkConstants.VULNERABLE_APP)
+                .append(FrameworkConstants.SLASH)
+                .toString();
     }
 
     /**

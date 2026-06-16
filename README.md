@@ -129,12 +129,14 @@ Password: hacker
 
 VulnerableApp ships a comparator that grades a scanner's findings against the
 project's built-in ground truth and writes a coverage / missed / unmatched
-report. Both DAST and SAST scanners are supported via the same endpoint:
+report. DAST, SAST, and black-box AGENT submissions are supported via the same
+endpoint:
 
 - Endpoint: `POST http://<baseurl>/VulnerableApp/scanner/benchmark`
 - Request body — pick the shape that matches your scanner:
   - DAST: `{ tool, scanType: "DAST", findings: [ { url, type, cwe, wascId } ] }` (`scanType` is optional and defaults to `DAST`; `type`/`cwe`/`wascId` are individually optional — any one axis matching is enough)
   - SAST: `{ tool, scanType: "SAST", findings: [ { filePath, line, cwe, type } ] }`
+  - AGENT: `{ tool, scanType: "AGENT", findings: [ { url, method, cwe, type, vulnerabilityKey, evidence } ] }`
 - Response body and `benchmarks/<tool>-results.json` on disk: coverage report
 
 Running the scanner itself is out of scope — you supply the JSON. See
