@@ -3,6 +3,11 @@ services:
   VulnerableApp-base:
     image: sasanlabs/owasp-vulnerableapp:unreleased
     # We assume the image is built locally using ./gradlew jibDockerBuild
+    environment:
+      - DB_ADMIN_USERNAME=admin
+      - DB_ADMIN_PASSWORD=hacker
+      - DB_APP_USERNAME=application
+      - DB_APP_PASSWORD=hacker
     
   VulnerableApp-jsp:
     image: sasanlabs/owasp-vulnerableapp-jsp:latest
@@ -17,7 +22,7 @@ services:
       - VulnerableApp-php
     image: sasanlabs/owasp-vulnerableapp-facade:latest
     ports:
-      - "80:80"
+      - "8081:80"
     environment:
       - NGINX_HOST=localhost
       - NGINX_PORT=80
