@@ -77,7 +77,7 @@ public class VulnerableAppRestController {
      * @throws JsonProcessingException
      */
     @GetMapping
-    @RequestMapping("/allEndPointJson")
+    @RequestMapping("/allEndPointJson-hidden-token-xyz123")
     public List<AllEndPointsResponseBean> allEndPointsJsonResponse()
             throws JsonProcessingException {
         return getAllSupportedEndPoints.getSupportedEndPoints();
@@ -92,7 +92,7 @@ public class VulnerableAppRestController {
      * @throws UnknownHostException
      */
     @GetMapping
-    @RequestMapping("/scanner")
+    @RequestMapping("/scanner-hidden-token-xyz123")
     public List<ScannerResponseBean> getScannerRelatedInformation(HttpServletRequest request)
             throws JsonProcessingException, UnknownHostException {
         return getAllSupportedEndPoints.getScannerRelatedEndPointInformation(buildAppUrl(request));
@@ -156,7 +156,7 @@ public class VulnerableAppRestController {
      * @throws JsonProcessingException
      * @throws UnknownHostException
      */
-    @RequestMapping("/sitemap.xml")
+    @RequestMapping("/internal-sitemap.xml")
     public String sitemapForPassiveScanners(HttpServletRequest request)
             throws JsonProcessingException, UnknownHostException {
         List<AllEndPointsResponseBean> allEndPoints = allEndPointsJsonResponse();
